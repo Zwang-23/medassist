@@ -21,14 +21,10 @@ import fitz
 import logging
 from typing import List, Dict
 
-load_dotenv()
-
-app = Flask(__name__, static_folder="static", static_url_path="/")
+app = Flask(__name__, static_folder="static/build", static_url_path="/")
 
 # CORS setup - Already good, but explicitly allow localhost:3000 for React dev
-CORS(app, resources={r"/api/*": {"origins": ["http://localhost:3000"]}},
-     supports_credentials=True)  # Supports credentials for session cookies
-
+CORS(app)  
 # Session configuration
 app.secret_key = os.urandom(24)  # Secure key for session
 app.config['SESSION_COOKIE_SECURE'] = True  # Set to True in production with HTTPS
@@ -226,6 +222,7 @@ def search_similar_articles(keywords: List[str], uploaded_title: str = None) -> 
     app.logger.info(f"Finished with {len(all_articles)} unique articles")
     return all_articles[:5] if len(all_articles) >= 5 else all_articles
 
+
 @app.before_request
 def initialize_session():
     if 'session_id' not in session:
@@ -240,10 +237,14 @@ def initialize_session():
         session['has_documents'] = False
 
 
-@app.route('/')
-def home():
-    # Serve React's index.html if you build it later; for now, keep this for testing
-    return send_from_directory('static', 'index2.html')
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def serve(path):
+    if path != "" and os.path.exists(f"client/build/{path}"):
+        return send_from_directory('client/build', path)
+    else:
+        return send_from_directory('client/build', 'index.html')
+
 
 @app.route('/api/reset', methods=['POST'])
 def reset_session():
@@ -450,4 +451,4 @@ def get_session_id():
     return jsonify({'session_id': session.get('session_id')})
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(debug=True, host='0.0.0.0', port=int(os.environ.get("PORT", 5000)))
