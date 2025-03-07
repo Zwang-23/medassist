@@ -1,0 +1,15 @@
+# React
+client/node_modules/
+client/build/
+client/.env
+
+# Python
+server/__pycache__/
+server/venv/
+server/.env
+*.pyc
+
+# General
+.vscode/
+.idea/
+.env
