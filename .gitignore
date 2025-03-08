@@ -1,6 +1,5 @@
 # React
 client/node_modules/
-client/build/
 client/.env
 
 # Python
