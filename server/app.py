@@ -20,7 +20,7 @@ import fitz
 import logging
 from typing import List, Dict
 
-app = Flask(__name__, static_folder="static/build", static_url_path="/")
+app = Flask(__name__, static_folder="client/build", static_url_path="/")
 
 # CORS setup - Already good, but explicitly allow localhost:3000 for React dev
 CORS(app)  
