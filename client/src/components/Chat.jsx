@@ -419,13 +419,13 @@ const Chat = () => {
                         alt={msg.role}
                         sx={{ width: 36, height: 36, mr: 1, borderRadius: '50%' }}
                       />
-                      <Typography variant="body2" sx={{ fontWeight: 600, color: '#666' }}>
+                      <Typography sx={{ fontWeight: 600, color: '#666', fontSize: '20px' }}>
                         {msg.role === 'user' ? 'You' : 'Assistant'}
                       </Typography>
                     </Box>
                     <ReactMarkdown
                       components={{
-                        p: ({ children }) => <Typography variant="body2" sx={{ color: '#666', mb: 0 }}>{children}</Typography>,
+                        p: ({ children }) => <Typography sx={{ color: '#666', mb: 0, fontSize: '16px'}}>{children}</Typography>,
                         ul: ({ children }) => <ul style={{ paddingLeft: '20px', margin: 0 }}>{children}</ul>,
                         li: ({ children }) => <li style={{ marginBottom: '6px' }}>{children}</li>,
                         strong: ({ children }) => <strong>{children}</strong>,
