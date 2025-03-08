@@ -419,7 +419,7 @@ const Chat = () => {
                         alt={msg.role}
                         sx={{ width: 36, height: 36, mr: 1, borderRadius: '50%' }}
                       />
-                      <Typography variant="body1" sx={{ fontWeight: 600, color: '#555' }}>
+                      <Typography variant="body2" sx={{ fontWeight: 600, color: '#666' }}>
                         {msg.role === 'user' ? 'You' : 'Assistant'}
                       </Typography>
                     </Box>
