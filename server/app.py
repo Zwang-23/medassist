@@ -239,10 +239,12 @@ def initialize_session():
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def serve(path):
-    if path != "" and os.path.exists(os.path.join(app.static_folder, path)):
+    # First, try to serve static files (CSS, JS, images, etc.)
+    static_file = os.path.join(app.static_folder, path)
+    if os.path.isfile(static_file):
         return send_from_directory(app.static_folder, path)
-    else:
-        return send_from_directory(app.static_folder, 'index.html')
+    # If not a static file, serve index.html
+    return send_from_directory(app.static_folder, 'index.html')
 
 
 @app.route('/api/reset', methods=['POST'])
