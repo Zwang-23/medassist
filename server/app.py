@@ -15,7 +15,6 @@ from pdf2image import convert_from_path
 from PIL import Image
 import cv2
 import numpy as np
-from dotenv import load_dotenv
 import requests
 import fitz
 import logging
