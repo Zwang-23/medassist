@@ -239,9 +239,10 @@ def initialize_session():
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def serve(path):
-    if path.startswith(app.static_folder.replace('/app/', '')) and os.path.exists(os.path.join(app.static_folder, path)):
+    if path != "" and os.path.exists(os.path.join(app.static_folder, path)):
         return send_from_directory(app.static_folder, path)
-    return send_from_directory(app.static_folder, 'index.html')
+    else:
+        return send_from_directory(app.static_folder, 'index.html')
 
 
 @app.route('/api/reset', methods=['POST'])
@@ -449,4 +450,4 @@ def get_session_id():
     return jsonify({'session_id': session.get('session_id')})
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=int(os.environ.get("PORT", 5000)))
+    app.run(debug=True, host='0.0.0.0', use_reloader=True, port=5000, threaded=True)
