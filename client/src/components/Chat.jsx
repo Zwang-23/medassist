@@ -327,10 +327,11 @@ const Chat = () => {
       setFile(null);
       setUploadedFileName(null);
       setUploadProgress(0);
+      setKeywords([]);
+      setSimilarArticles([]);
       if (fileInputRef.current) {
-        fileInputRef.current.value = ''; // Reset the file input field
-        fileInputRef.current.type = 'text'; // Temporarily change type to reset
-        fileInputRef.current.type = 'file';
+        fileInputRef.current.value = null; // Reset the file input field
+        fileInputRef.current.setAttribute('key', Date.now());
       }
       console.log('Session reset by user');
     } catch (error) {
@@ -534,6 +535,7 @@ const Chat = () => {
                         type="file"
                         accept=".pdf"
                         hidden
+                        ref={fileInputRef}
                         onChange={(e) => setFile(e.target.files?.[0] || null)}
                       />
                     </Button>
