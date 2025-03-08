@@ -20,7 +20,7 @@ import fitz
 import logging
 from typing import List, Dict
 
-app = Flask(__name__, static_folder="/app/client/build", static_url_path="/")
+app = Flask(__name__, static_folder="/app/client/build", static_url_path="/static")
 
 # CORS setup - Already good, but explicitly allow localhost:3000 for React dev
 CORS(app)  
@@ -451,9 +451,9 @@ def transcribe_audio():
 def get_session_id():
     return jsonify({'session_id': session.get('session_id')})
 
-@app.errorhandler(404)
-def not_found(e):
-    return send_from_directory(app.static_folder, 'index.html')
+# @app.errorhandler(404)
+# def not_found(e):
+#     return send_from_directory(app.static_folder, 'index.html')
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', use_reloader=True, port=5000, threaded=True)
