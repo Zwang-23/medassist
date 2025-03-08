@@ -21,6 +21,33 @@ const GlobalStyles = () => (
     }
   `}</style>
 );
+const FileInput = ({ onChange }) => {
+  const [key, setKey] = useState(Date.now());
+
+  const resetInput = () => {
+    setKey(Date.now());
+  };
+
+  return (
+    <>
+      <Button
+        variant="contained"
+        component="label"
+        sx={{ bgcolor: '#4caf50', '&:hover': { bgcolor: '#45a049' }, borderRadius: '8px' }}
+      >
+        Choose File
+        <input
+          key={key}
+          type="file"
+          accept=".pdf"
+          hidden
+          onChange={(e) => onChange(e.target.files?.[0] || null)}
+        />
+      </Button>
+      <button ref={fileInputRef} style={{ display: 'none' }} onClick={resetInput} />
+    </>
+  );
+};
 
 const Chat = () => {
   const [message, setMessage] = useState('');
@@ -330,8 +357,7 @@ const Chat = () => {
       setKeywords([]);
       setSimilarArticles([]);
       if (fileInputRef.current) {
-        fileInputRef.current.value = null; // Reset the file input field
-        fileInputRef.current.setAttribute('key', Date.now());
+        fileInputRef.current.click();
       }
       console.log('Session reset by user');
     } catch (error) {
