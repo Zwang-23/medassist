@@ -239,10 +239,13 @@ def initialize_session():
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def serve(path):
-    if path != "" and os.path.exists(f"client/build/{path}"):
-        return send_from_directory('client/build', path)
+    app.logger.info(f"Static folder: {app.static_folder}")
+    app.logger.info(f"Checking path: {os.path.join(app.static_folder, 'index.html')}")
+    app.logger.info(f"Path exists: {os.path.exists(os.path.join(app.static_folder, 'index.html'))}")
+    if path != "" and os.path.exists(os.path.join(app.static_folder, path)):
+        return send_from_directory(app.static_folder, path)
     else:
-        return send_from_directory('client/build', 'index.html')
+        return send_from_directory(app.static_folder, 'index.html')
 
 
 @app.route('/api/reset', methods=['POST'])
