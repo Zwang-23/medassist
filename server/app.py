@@ -239,10 +239,9 @@ def initialize_session():
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def serve(path):
-    def serve(path):
-        if path.startswith(app.static_folder.replace('/app/', '')) and os.path.exists(os.path.join(app.static_folder, path)):
-            return send_from_directory(app.static_folder, path)
-        return send_from_directory(app.static_folder, 'index.html')
+    if path.startswith(app.static_folder.replace('/app/', '')) and os.path.exists(os.path.join(app.static_folder, path)):
+        return send_from_directory(app.static_folder, path)
+    return send_from_directory(app.static_folder, 'index.html')
 
 
 @app.route('/api/reset', methods=['POST'])
