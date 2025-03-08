@@ -1,0 +1,1 @@
+touch server/__init__.py  # or echo > server\__init__.py on Windows
