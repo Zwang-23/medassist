@@ -329,6 +329,8 @@ const Chat = () => {
       setUploadProgress(0);
       if (fileInputRef.current) {
         fileInputRef.current.value = ''; // Reset the file input field
+        fileInputRef.current.type = 'text'; // Temporarily change type to reset
+        fileInputRef.current.type = 'file';
       }
       console.log('Session reset by user');
     } catch (error) {
