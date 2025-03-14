@@ -5,7 +5,7 @@ from flask import Flask, send_from_directory, request, jsonify, session, Respons
 from flask_cors import CORS
 import os
 from openai import OpenAI
-import create_db
+from server import create_db
 import uuid
 from datetime import datetime, timedelta
 from apscheduler.schedulers.background import BackgroundScheduler
