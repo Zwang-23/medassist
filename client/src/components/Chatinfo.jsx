@@ -65,6 +65,28 @@ const ChatInfo = () => {
             treatments or analyzing studies, I’ve got you covered. Let’s get started!
           </Typography>
 
+          {/* Instruction Video */}
+          <Box sx={{ mb: 3 }}>
+            <Typography
+              variant="h6"
+              gutterBottom
+              sx={{
+                fontWeight: 600,
+                color: '#1976d2',
+              }}
+            >
+              Watch the Instruction Video
+            </Typography>
+            <video
+              width="100%"
+              controls
+              style={{ maxWidth: '600px', borderRadius: '8px' }}
+            >
+              <source src="video/Demo.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </Box>
+
           {/* User Guide */}
           <Typography
             variant="h6"

@@ -5,7 +5,7 @@ from flask import Flask, send_from_directory, request, jsonify, session, Respons
 from flask_cors import CORS
 import os
 from openai import OpenAI
-from server import create_db
+import create_db
 import uuid
 from datetime import datetime, timedelta
 from apscheduler.schedulers.background import BackgroundScheduler
@@ -399,7 +399,7 @@ def stream_response():
 
             full_response = []
             stream = client.chat.completions.create(
-                model="gpt-3.5-turbo",
+                model="gpt-4",
                 messages=messages,
                 stream=True
             )
