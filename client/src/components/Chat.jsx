@@ -485,7 +485,7 @@ const Chat = () => {
                 />
                 <Button
                   variant="contained"
-                  onClick={() => handleSendMessage()}
+                  onClick={() => handleSendMessage(message)}
                   sx={{
                     bgcolor: '#1976d2',
                     '&:hover': { bgcolor: '#1565c0' },
