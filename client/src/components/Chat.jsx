@@ -253,10 +253,19 @@ const Chat = () => {
   };
 
   const handleSendMessage = async (text = message) => {
+    let messageText = '';
+  
+    // If input is an event object, use message state
     if (text && typeof text === 'object' && text.preventDefault) {
-      text = message;
+      messageText = message;
+    } else {
+      // Otherwise use the provided text or fall back to message state
+      messageText = text || message;
     }
-    if (!text.trim()) return;
+    
+    // Convert to string and check if empty (without using trim)
+    messageText = String(messageText);
+    if (!messageText || messageText.length === 0) return;
     setMessage(''); // Clear the input field
   
     setChatHistory(prev => [...prev, { role: 'user', content: text }]);
