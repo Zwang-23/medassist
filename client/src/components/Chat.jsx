@@ -268,7 +268,7 @@ const Chat = () => {
     if (!messageText || messageText.length === 0) return;
     setMessage(''); // Clear the input field
   
-    setChatHistory(prev => [...prev, { role: 'user', content: text }]);
+    setChatHistory(prev => [...prev, { role: 'user', content: messageText }]);
     setIsStreaming(false); 
     setIsResponding(true);
     try {
