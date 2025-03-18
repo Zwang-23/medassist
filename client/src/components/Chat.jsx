@@ -253,6 +253,9 @@ const Chat = () => {
   };
 
   const handleSendMessage = async (text = message) => {
+    if (typeof text !== 'string') {
+      text = message;
+    }
     if (!text.trim()) return;
     setMessage(''); // Clear the input field
   
