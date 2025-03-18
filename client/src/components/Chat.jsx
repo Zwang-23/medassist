@@ -256,10 +256,10 @@ const Chat = () => {
     if (text && typeof text === 'object' && text.preventDefault) {
       text = message;
     }
-    if (!safeText.trim()) return;
+    if (!text.trim()) return;
     setMessage(''); // Clear the input field
   
-    setChatHistory(prev => [...prev, { role: 'user', content: safeText }]);
+    setChatHistory(prev => [...prev, { role: 'user', content: text }]);
     setIsStreaming(false); 
     setIsResponding(true);
     try {
