@@ -253,7 +253,9 @@ const Chat = () => {
   };
 
   const handleSendMessage = async (text = message) => {
-    const safeText = typeof text === 'string' ? text : '';
+    if (text && typeof text === 'object' && text.preventDefault) {
+      text = message;
+    }
     if (!safeText.trim()) return;
     setMessage(''); // Clear the input field
   
