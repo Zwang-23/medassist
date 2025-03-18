@@ -253,13 +253,11 @@ const Chat = () => {
   };
 
   const handleSendMessage = async (text = message) => {
-    if (typeof text !== 'string') {
-      text = message;
-    }
-    if (!text.trim()) return;
+    const safeText = typeof text === 'string' ? text : '';
+    if (!safeText.trim()) return;
     setMessage(''); // Clear the input field
   
-    setChatHistory(prev => [...prev, { role: 'user', content: text }]);
+    setChatHistory(prev => [...prev, { role: 'user', content: safeText }]);
     setIsStreaming(false); 
     setIsResponding(true);
     try {
